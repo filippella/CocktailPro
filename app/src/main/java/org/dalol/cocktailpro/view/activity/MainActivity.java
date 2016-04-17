@@ -66,6 +66,7 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
     private State mCurrentState = State.IDLE;
     private Menu mViewTypeOptions;
     private boolean mFlag;
+    private int mAdapterType;
 
 
     @Override
@@ -95,6 +96,13 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "FloatingActionButton Selected", Toast.LENGTH_SHORT).show();
+
+                if(mAdapterType == 2) {
+                    mAdapterType = 0;
+                } else {
+                    mAdapterType = 2;
+                }
+                configAdapter(mAdapterType);
             }
         });
 
@@ -213,39 +221,11 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
 //        mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
 //        mRecyclerView.setAdapter(new RecyclerListAdapter());
 
-        int type = 2;
-
-        switch (type) {
-            default:
-            case Constant.TYPE_VERTICAL_LIST:
-                mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-                mAdapter = new RecyclerListAdapter();
-                break;
-            case Constant.TYPE_HORIZONTAL_LIST:
-                mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-                mAdapter = new RecyclerGridAdapter();
-                break;
-            case Constant.TYPE_GRID_VIEW:
-                mLayoutManager = new GridLayoutManager(getApplicationContext(), Constant.NUM_OF_COLUMNS);
-                mAdapter = new RecyclerGridAdapter();
-                break;
-            case Constant.TYPE_HORIZONTAL_GRID_VIEW_STAGGERED:
-                mLayoutManager = new StaggeredGridLayoutManager(Constant.HR_SPAN_COUNT, StaggeredGridLayoutManager.HORIZONTAL);
-                mAdapter = new RecyclerGridAdapter();
-                break;
-            case Constant.TYPE_VERTICAL_GRID_VIEW_STAGGERED:
-                mLayoutManager = new StaggeredGridLayoutManager(Constant.VR_SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
-                mAdapter = new RecyclerGridAdapter();
-                break;
-        }
+        mAdapterType = 2;
+        configAdapter(mAdapterType);
 
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
-        mRecyclerView.setAdapter(mAdapter);
-
-        mNavigationView.setItemIconTintList(null);
+        //mNavigationView.setItemIconTintList(R.color.black);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -310,12 +290,45 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
         handler.postDelayed(runnable, INTERVAL);
     }
 
+    private void configAdapter(int type) {
+
+        switch (type) {
+            default:
+            case Constant.TYPE_VERTICAL_LIST:
+                mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+                mAdapter = new RecyclerListAdapter();
+                break;
+            case Constant.TYPE_HORIZONTAL_LIST:
+                mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                mAdapter = new RecyclerGridAdapter();
+                break;
+            case Constant.TYPE_GRID_VIEW:
+                mLayoutManager = new GridLayoutManager(getApplicationContext(), Constant.NUM_OF_COLUMNS);
+                mAdapter = new RecyclerGridAdapter();
+                break;
+            case Constant.TYPE_HORIZONTAL_GRID_VIEW_STAGGERED:
+                mLayoutManager = new StaggeredGridLayoutManager(Constant.HR_SPAN_COUNT, StaggeredGridLayoutManager.HORIZONTAL);
+                mAdapter = new RecyclerGridAdapter();
+                break;
+            case Constant.TYPE_VERTICAL_GRID_VIEW_STAGGERED:
+                mLayoutManager = new StaggeredGridLayoutManager(Constant.VR_SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
+                mAdapter = new RecyclerGridAdapter();
+                break;
+        }
+
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
     @Override
     protected void configViews(Intent intent, Bundle savedInstanceState) {
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
         mCollapsingToolbarLayout.setTitle("Filippo");
-        mCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
-        mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.colorPrimary));
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.colorAccent));
+        mCollapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -378,6 +391,12 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
             startActivity(new Intent(MainActivity.this, SettingActivity.class));
             Toast.makeText(getApplicationContext(), "Settings Clicked!", Toast.LENGTH_SHORT).show();
         } else if (selectedMenuId == R.id.nav_viewType) {
+            if(mAdapterType == 2) {
+                mAdapterType = 0;
+            } else {
+                mAdapterType = 2;
+            }
+            configAdapter(mAdapterType);
             Toast.makeText(getApplicationContext(), "View Clicked!", Toast.LENGTH_SHORT).show();
         } else if (selectedMenuId == R.id.nav_search) {
             Toast.makeText(getApplicationContext(), "Search Clicked!", Toast.LENGTH_SHORT).show();

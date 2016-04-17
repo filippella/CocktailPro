@@ -5,6 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout
@@ -66,7 +67,7 @@
             android:clickable="true"
             android:src="@mipmap/ic_list"
             app:layout_anchor="@+id/appbar"
-            app:backgroundTint="@color/light_green"
+            app:backgroundTint="@color/colorAccent"
             app:borderWidth="0dp"
             app:elevation="6dp"
             app:fabSize="normal"
@@ -82,6 +83,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_view"
-        android:background="@color/white"/>
+        android:background="@color/drawerBackground"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/colorAccent"/>
 
 </android.support.v4.widget.DrawerLayout>

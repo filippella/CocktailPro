@@ -14,7 +14,7 @@ public class CocktailProApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FontReplacementUtil.replaceDefaultFont(this, "helvetica-neue-light.ttf", "DEFAULT");
+        //FontReplacementUtil.replaceDefaultFont(this, "helvetica-neue-light.ttf", "DEFAULT");
     }
 
     @Override

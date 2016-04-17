@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F50057</color>
-    <color name="colorPrimaryDark">#C51162</color>
+    <color name="colorPrimary">#181A1C</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="textColor">#ffffff</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#FF80AB</color>
+    <color name="colorAccent">#FF353E</color>
     <color name="light_green">#00c652</color>
     <color name="white">#FFFFFF</color>
     <color name="mainBg">#333333</color>
     <color name="black">#000000</color>
-    <color name="selectedNavigationItem">#EDEDED</color>
+    <color name="drawerBackground">#131417</color>
+    <color name="selectedNavigationItem">#242424</color>
     <color name="grey_light">#CCCCCC</color>
 
+    <color name="blue_find">#1F70C3</color>
+    <color name="blue">#00b8f4</color>
     <color name="light_blue1">#01a2ff</color>
     <color name="light_orange">#ff6101</color>
     <color name="purple">#8504e0</color>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:minHeight="150dp"
     android:background="@color/colorPrimary"
-    android:layout_margin="2dp">
+    android:layout_margin="1dp">
 
     <org.dalol.cocktailpro.view.custom.SquareImageView
         android:id="@+id/picture"

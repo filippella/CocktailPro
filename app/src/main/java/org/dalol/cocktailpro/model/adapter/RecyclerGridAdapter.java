@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import org.dalol.cocktailpro.R;
 import org.dalol.cocktailpro.view.activity.CocktailDetailActivity;
 import org.dalol.cocktailpro.view.activity.CocktailOverviewActivity;
+import org.dalol.cocktailpro.view.activity.DetailActivity;
 import org.dalol.cocktailpro.view.custom.SquareImageView;
 
 /**
@@ -76,7 +77,7 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<RecyclerGridAdapte
 
         @Override
         public void onClick(View v) {
-            v.getContext().startActivity(new Intent(v.getContext(), CocktailOverviewActivity.class));
+            v.getContext().startActivity(new Intent(v.getContext(), DetailActivity.class));
         }
     }
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.dalol.cocktailpro">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.CocktailProApplication"
         android:allowBackup="true"
@@ -19,6 +21,7 @@
         <activity android:name=".view.activity.SettingActivity" />
         <activity android:name=".view.activity.CocktailOverviewActivity" />
         <activity android:name=".view.activity.CocktailDetailActivity" />
+        <activity android:name=".view.activity.DetailActivity" />
     </application>
 
 </manifest>
