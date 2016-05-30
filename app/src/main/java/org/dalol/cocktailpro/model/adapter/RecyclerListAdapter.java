@@ -10,7 +10,9 @@ import org.dalol.cocktailpro.R;
 import org.dalol.cocktailpro.view.activity.CocktailOverviewActivity;
 
 /**
- * Created by Filippo-TheAppExpert on 1/13/2016.
+ * @author Filippo <filippo.eng@gmail.com>
+ * @version 1.0.0
+ * @since 1/13/2016
  */
 public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.Holder> {
 

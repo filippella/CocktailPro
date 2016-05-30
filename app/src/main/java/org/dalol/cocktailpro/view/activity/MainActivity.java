@@ -1,7 +1,11 @@
 package org.dalol.cocktailpro.view.activity;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -44,6 +48,12 @@ import org.dalol.cocktailpro.R;
 import org.dalol.cocktailpro.model.adapter.RecyclerGridAdapter;
 import org.dalol.cocktailpro.model.adapter.RecyclerListAdapter;
 import org.dalol.cocktailpro.model.constants.Constant;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFactory {
 
@@ -97,7 +107,7 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "FloatingActionButton Selected", Toast.LENGTH_SHORT).show();
 
-                if(mAdapterType == 2) {
+                if (mAdapterType == 2) {
                     mAdapterType = 0;
                 } else {
                     mAdapterType = 2;
@@ -292,6 +302,8 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
 
     private void configAdapter(int type) {
 
+        mAdapter = new RecyclerGridAdapter(getList());
+
         switch (type) {
             default:
             case Constant.TYPE_VERTICAL_LIST:
@@ -300,26 +312,23 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
                 break;
             case Constant.TYPE_HORIZONTAL_LIST:
                 mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-                mAdapter = new RecyclerGridAdapter();
+
                 break;
             case Constant.TYPE_GRID_VIEW:
                 mLayoutManager = new GridLayoutManager(getApplicationContext(), Constant.NUM_OF_COLUMNS);
-                mAdapter = new RecyclerGridAdapter();
                 break;
             case Constant.TYPE_HORIZONTAL_GRID_VIEW_STAGGERED:
                 mLayoutManager = new StaggeredGridLayoutManager(Constant.HR_SPAN_COUNT, StaggeredGridLayoutManager.HORIZONTAL);
-                mAdapter = new RecyclerGridAdapter();
                 break;
             case Constant.TYPE_VERTICAL_GRID_VIEW_STAGGERED:
                 mLayoutManager = new StaggeredGridLayoutManager(Constant.VR_SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
-                mAdapter = new RecyclerGridAdapter();
                 break;
         }
 
 
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
+        //mRecyclerView.setHasFixedSize(true);
+        //mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -391,7 +400,7 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
             startActivity(new Intent(MainActivity.this, SettingActivity.class));
             Toast.makeText(getApplicationContext(), "Settings Clicked!", Toast.LENGTH_SHORT).show();
         } else if (selectedMenuId == R.id.nav_viewType) {
-            if(mAdapterType == 2) {
+            if (mAdapterType == 2) {
                 mAdapterType = 0;
             } else {
                 mAdapterType = 2;
@@ -452,7 +461,7 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
 //                        Toast.makeText(getApplicationContext(), "Hide arrow", Toast.LENGTH_SHORT).show();
 //                    }
 
-                    if(!autocompletetextview.isPerformingCompletion()) {
+                    if (!autocompletetextview.isPerformingCompletion()) {
                         Toast.makeText(getApplicationContext(), "Hide arrow", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -464,7 +473,7 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
             Window window = alertDialog.getWindow();
             WindowManager.LayoutParams wlp = window.getAttributes();
 
-            wlp.gravity = Gravity.TOP  | Gravity.CENTER_HORIZONTAL;
+            wlp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
             wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
             window.setAttributes(wlp);
 
@@ -522,6 +531,24 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
         imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
                 ImageSwitcher.LayoutParams.MATCH_PARENT, ImageSwitcher.LayoutParams.MATCH_PARENT));
         return imageView;
+    }
+
+    public List<Bitmap> getList() {
+
+        List<Bitmap> drawables = new ArrayList<>();
+        try {
+            AssetManager assetManager = getAssets();
+            for (String file : assetManager.list("images")) {
+                InputStream inputstream = assetManager.open("images/" + file);
+//                Bitmap bmp= BitmapFactory.decodeStream(inputstream);
+//                Drawable drawable = Drawable.createFromStream(inputstream, null);
+                drawables.add(BitmapFactory.decodeStream(inputstream));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return drawables;
     }
 
 

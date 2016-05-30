@@ -1,7 +1,9 @@
 package org.dalol.cocktailpro.model.constants;
 
 /**
- * Created by Filippo-TheAppExpert on 1/14/2016.
+ * @author Filippo <filippo.eng@gmail.com>
+ * @version 1.0.0
+ * @since 1/13/2016
  */
 public class Constant {
     public static final int HR_SPAN_COUNT = 3;

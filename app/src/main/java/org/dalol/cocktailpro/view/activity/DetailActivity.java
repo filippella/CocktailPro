@@ -13,9 +13,9 @@ import org.dalol.cocktailpro.model.adapter.DetailPagerAdapter;
 import org.dalol.cocktailpro.view.fragment.TabFragment;
 
 /**
- * @author Filippo Engidashet <filippo.eng@gmail.com>
+ * @author Filippo <filippo.eng@gmail.com>
  * @version 1.0.0
- * @since 1/28/2016
+ * @since 1/13/2016
  */
 public class DetailActivity extends BaseActivity {
 

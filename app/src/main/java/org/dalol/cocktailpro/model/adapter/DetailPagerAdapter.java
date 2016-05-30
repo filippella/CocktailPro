@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Filippo Engidashet <filippo.eng@gmail.com>
+ * @author Filippo <filippo.eng@gmail.com>
  * @version 1.0.0
  * @since 1/28/2016
  */
