@@ -110,7 +110,7 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<RecyclerGridAdapte
 
             CocktailActivity activity = (CocktailActivity) v.getContext();
 
-            DetailActivity.launch(activity,  v, cocktailItem.getImageId());
+            DetailActivity.launch(activity,  v, cocktailItem);
 
             //v.getContext().startActivity(new Intent(v.getContext(), DetailActivity.class));
         }

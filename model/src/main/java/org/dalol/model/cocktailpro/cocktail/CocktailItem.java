@@ -1,11 +1,13 @@
 package org.dalol.model.cocktailpro.cocktail;
 
+import java.io.Serializable;
+
 /**
  * @author Filippo Engidashet <filippo.eng@gmail.com>
  * @version 1.0.0
  * @since 6/11/2016
  */
-public class CocktailItem {
+public class CocktailItem implements Serializable {
 
     private Cocktail cocktail;
     private int imageId = -19;

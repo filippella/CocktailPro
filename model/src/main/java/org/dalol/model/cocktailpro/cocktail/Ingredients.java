@@ -5,12 +5,14 @@
  */
 package org.dalol.model.cocktailpro.cocktail;
 
+import java.io.Serializable;
+
 /**
  * @author Filippo <filippo.eng@gmail.com>
  * @version 1.0.0
  * @since 5/22/2016
  */
-public class Ingredients {
+public class Ingredients implements Serializable {
 
     private String amount;
     private String unit;

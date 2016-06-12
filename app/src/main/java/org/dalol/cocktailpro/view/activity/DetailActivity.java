@@ -1,6 +1,5 @@
 package org.dalol.cocktailpro.view.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,6 +19,8 @@ import org.dalol.cocktailpro.R;
 import org.dalol.cocktailpro.base.BaseActivity;
 import org.dalol.cocktailpro.model.adapter.DetailPagerAdapter;
 import org.dalol.cocktailpro.view.fragment.TabFragment;
+import org.dalol.model.cocktailpro.cocktail.Cocktail;
+import org.dalol.model.cocktailpro.cocktail.CocktailItem;
 
 /**
  * @author Filippo <filippo.eng@gmail.com>
@@ -29,7 +30,7 @@ import org.dalol.cocktailpro.view.fragment.TabFragment;
 public class DetailActivity extends BaseActivity {
 
 
-    public static final String EXTRA_IMAGE = "DetailActivity:image";
+    public static final String EXTRA_ITEM = "DetailActivity:item";
 
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
@@ -46,13 +47,18 @@ public class DetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         configViews();
         onViewSetupCompleted();
-        getSupportActionBar().setTitle("Navigation!");
+
 
         ImageView image = (ImageView) findViewById(R.id.image);
 
-        ViewCompat.setTransitionName(image, EXTRA_IMAGE);
+        ViewCompat.setTransitionName(image, EXTRA_ITEM);
 
-        Picasso.with(this).load(getIntent().getIntExtra(EXTRA_IMAGE, -1)).into(image);
+        CocktailItem item = (CocktailItem) getIntent().getSerializableExtra(EXTRA_ITEM);
+        Cocktail cocktail = item.getCocktail();
+
+        getSupportActionBar().setTitle(cocktail.getName());
+
+        Picasso.with(this).load(item.getImageId()).into(image);
     }
 
     protected void onViewSetupCompleted() {
@@ -106,12 +112,12 @@ public class DetailActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void launch(BaseActivity activity, View transitionView, int url) {
+    public static void launch(BaseActivity activity, View transitionView, CocktailItem item) {
         ActivityOptionsCompat options =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        activity, transitionView, EXTRA_IMAGE);
+                        activity, transitionView, EXTRA_ITEM);
         Intent intent = new Intent(activity, DetailActivity.class);
-        intent.putExtra(EXTRA_IMAGE, url);
+        intent.putExtra(EXTRA_ITEM, item);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 }
