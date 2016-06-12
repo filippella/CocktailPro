@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.dalol.cocktailpro.R;
+import org.dalol.cocktailpro.base.BaseActivity;
 import org.dalol.cocktailpro.model.adapter.ImagePagerAdapter;
 import org.dalol.cocktailpro.model.callback.PagerInterface;
 import org.dalol.cocktailpro.view.fragment.ImageFragment;
@@ -31,7 +32,6 @@ public class CocktailOverviewActivity extends BaseActivity implements PagerInter
     private int mTotalCount;
     private Button mHowTo;
 
-    @Override
     protected void onViewSetupCompleted() {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,7 +76,6 @@ public class CocktailOverviewActivity extends BaseActivity implements PagerInter
 
     }
 
-    @Override
     protected void configViews(Intent intent, Bundle savedInstanceState) {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mCounter = (TextView) findViewById(R.id.counter);
@@ -84,14 +83,13 @@ public class CocktailOverviewActivity extends BaseActivity implements PagerInter
         mHowTo = (Button) findViewById(R.id.howTo);
     }
 
-    @Override
     protected Toolbar getToolbar() {
         mToolbar.setTitle("Name");
         return mToolbar;
     }
 
     @Override
-    protected int getResourceId() {
+    protected int getContentView() {
         return R.layout.activity_cocktail_overview;
     }
 

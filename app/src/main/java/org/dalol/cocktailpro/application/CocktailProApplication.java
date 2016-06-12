@@ -2,9 +2,9 @@ package org.dalol.cocktailpro.application;
 
 import android.app.Application;
 import android.content.Context;
-//import android.support.multidex.MultiDex;
 
-import org.dalol.cocktailpro.model.utilities.FontReplacementUtil;
+import org.dalol.cocktailpro.di.components.BaseComponent;
+import org.dalol.cocktailpro.di.components.DaggerBaseComponent;
 
 /**
  * @author Filippo <filippo.eng@gmail.com>
@@ -15,8 +15,13 @@ public class CocktailProApplication extends Application {
 
     @Override
     public void onCreate() {
+        getBaseDependency();
         super.onCreate();
         //FontReplacementUtil.replaceDefaultFont(this, "helvetica-neue-light.ttf", "DEFAULT");
+    }
+
+    public static BaseComponent getBaseDependency() {
+        return DaggerBaseComponent.builder().build();
     }
 
     @Override

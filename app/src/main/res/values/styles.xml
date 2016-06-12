@@ -10,6 +10,7 @@
         <item name="colorControlHighlight">@color/selectedNavigationItem</item>
         <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewLight</item>
         <item name="android:dropDownItemStyle">@style/DropDownItemLight</item>
+        <item name="windowActionBarOverlay">true</item>
     </style>
 
     <style name="AutoCompleteTextViewLight" parent="@android:style/Widget.AutoCompleteTextView">

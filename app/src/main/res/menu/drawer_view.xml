@@ -8,6 +8,16 @@
             android:title="@string/nav_share_app" />
 
         <item
+            android:id="@+id/nav_favourite"
+            android:icon="@mipmap/ic_rate"
+            android:title="Favourites" />
+
+        <item
+            android:id="@+id/nav_create"
+            android:icon="@mipmap/ic_rate"
+            android:title="Create Cocktail" />
+
+        <item
             android:id="@+id/nav_rate"
             android:icon="@mipmap/ic_rate"
             android:title="@string/nav_rate_app" />

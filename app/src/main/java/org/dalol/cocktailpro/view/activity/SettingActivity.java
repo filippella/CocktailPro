@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import org.dalol.cocktailpro.R;
+import org.dalol.cocktailpro.base.BaseActivity;
 
 /**
  * @author Filippo <filippo.eng@gmail.com>
@@ -15,13 +16,18 @@ import org.dalol.cocktailpro.R;
  */
 public class SettingActivity extends BaseActivity {
 
-    private Toolbar mToolbar;
-
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Preferences");
+        onViewSetupCompleted();
+
+    }
+
     protected void onViewSetupCompleted() {
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new SettingsPreference())
@@ -29,18 +35,7 @@ public class SettingActivity extends BaseActivity {
     }
 
     @Override
-    protected void configViews(Intent intent, Bundle savedInstanceState) {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-    }
-
-    @Override
-    protected Toolbar getToolbar() {
-        mToolbar.setTitle("Preferences");
-        return mToolbar;
-    }
-
-    @Override
-    protected int getResourceId() {
+    protected int getContentView() {
         return R.layout.activity_settings;
     }
 

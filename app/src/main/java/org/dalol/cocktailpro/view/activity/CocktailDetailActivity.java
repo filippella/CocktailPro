@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import org.dalol.cocktailpro.R;
+import org.dalol.cocktailpro.base.BaseActivity;
 import org.dalol.cocktailpro.model.adapter.RecyclerListAdapter;
 import org.dalol.cocktailpro.view.custom.StickyHeaderView;
 
@@ -22,7 +23,6 @@ public class CocktailDetailActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
 
-    @Override
     protected void onViewSetupCompleted() {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,19 +37,17 @@ public class CocktailDetailActivity extends BaseActivity {
 
     }
 
-    @Override
     protected void configViews(Intent intent, Bundle savedInstanceState) {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
-    @Override
     protected Toolbar getToolbar() {
         mToolbar.setTitle("Name");
         return mToolbar;
     }
 
     @Override
-    protected int getResourceId() {
+    protected int getContentView() {
         return R.layout.activity_cocktail_detail;
     }
 

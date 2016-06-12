@@ -2,12 +2,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="GENERAL">
-
         <SwitchPreference
             android:defaultValue="true"
             android:key="pref_slideshow"
             android:title="Images Slideshow" />
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="REFERENCES">

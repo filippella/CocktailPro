@@ -5,7 +5,6 @@ import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -45,6 +44,7 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import org.dalol.cocktailpro.R;
+import org.dalol.cocktailpro.base.BaseActivity;
 import org.dalol.cocktailpro.model.adapter.RecyclerGridAdapter;
 import org.dalol.cocktailpro.model.adapter.RecyclerListAdapter;
 import org.dalol.cocktailpro.model.constants.Constant;
@@ -52,7 +52,6 @@ import org.dalol.cocktailpro.model.constants.Constant;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFactory {
@@ -79,7 +78,6 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
     private int mAdapterType;
 
 
-    @Override
     protected void onViewSetupCompleted() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.openDrawer, R.string.closeDrawer) {
             @Override
@@ -162,25 +160,6 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
         mBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//
-//                if (verticalOffset == 0) {
-//                    if (mCurrentState != State.EXPANDED) {
-//                        onStateChanged(appBarLayout, State.EXPANDED);
-//                    }
-//                    mCurrentState = State.EXPANDED;
-//                } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
-//                    if (mCurrentState != State.COLLAPSED) {
-//                        onStateChanged(appBarLayout, State.COLLAPSED);
-//                    }
-//                    mCurrentState = State.COLLAPSED;
-//                } else {
-//                    if (mCurrentState != State.IDLE) {
-//                        onStateChanged(appBarLayout, State.IDLE);
-//                    }
-//                    mCurrentState = State.IDLE;
-//                }
-//
-//
                 if (mCollapsingToolbarLayout.getHeight() + verticalOffset < 2 * ViewCompat.getMinimumHeight(mCollapsingToolbarLayout)) {
                     if (mCurrentState != State.EXPANDED) {
                         Log.d("BUTTONSTATUS", State.EXPANDED.name() + " [HIDDEN]");
@@ -302,7 +281,7 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
 
     private void configAdapter(int type) {
 
-        mAdapter = new RecyclerGridAdapter(getList());
+//        mAdapter = new RecyclerGridAdapter(getList());
 
         switch (type) {
             default:
@@ -332,7 +311,6 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    @Override
     protected void configViews(Intent intent, Bundle savedInstanceState) {
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
         mCollapsingToolbarLayout.setTitle("Filippo");
@@ -348,13 +326,12 @@ public class MainActivity extends BaseActivity implements ViewSwitcher.ViewFacto
         mBarLayout = (AppBarLayout) findViewById(R.id.appbar);
     }
 
-    @Override
     protected Toolbar getToolbar() {
         return mToolbar;
     }
 
     @Override
-    protected int getResourceId() {
+    protected int getContentView() {
         return R.layout.activity_main;
     }
 
